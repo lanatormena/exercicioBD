@@ -1,0 +1,228 @@
+﻿1- Insert de estado
+
+
+insert into 
+        public.uf(nome,  sigla) 
+values('Paraná', 'PR');
+
+
+insert into 
+        public.uf(nome,  sigla) 
+values('São Paulo', 'SP');
+
+
+insert into 
+        public.uf(nome,  sigla) 
+values('Santa catarina', 'SC');
+
+
+2- SC insert into 
+        public.cidade (id_uf, nome) 
+values
+        (3, 'Chapecó')
+insert into 
+        public.cidade (id_uf, nome) 
+values
+        (3, 'Blumenau')
+insert into 
+        public.cidade (id_uf, nome) 
+values
+        (3, 'Joinville')
+
+
+PR
+ insert into 
+        public.cidade (id_uf, nome) 
+values
+        (1, 'Curitiba')
+insert into 
+        public.cidade (id_uf, nome) 
+values
+        (1, 'Maringá')
+insert into 
+        public.cidade (id_uf, nome) 
+values
+        (1, 'Lunardeli')
+ insert into 
+        public.cidade (id_uf, nome) 
+values
+        (1, 'Apucarana')
+insert into 
+        public.cidade (id_uf, nome) 
+values
+        (1, 'Santa fé')
+insert into 
+        public.cidade (id_uf, nome) 
+values
+        (1, 'São Miguel do Iguaçu')
+insert into 
+        public.cidade (id_uf, nome) 
+values
+        (1, 'Arapongas')
+insert into 
+        public.cidade (id_uf, nome) 
+values
+        (1, 'Ponta Grossa')
+insert into 
+        public.cidade (id_uf, nome) 
+values
+        (1, 'Jandaia do Sul')
+
+
+SP
+insert into 
+        public.cidade (id_uf, nome) 
+values
+        (2, 'Ribeirão preto')
+
+
+3-  delete from public.uf where id = 4
+
+
+4- SP
+insert into 
+        public.cidade (id_uf, nome) 
+values
+        (2, 'Guarulhos')
+insert into 
+        public.cidade (id_uf, nome) 
+values
+        (2, 'São Paulo')
+
+
+5- update public.cidade set nome = 'Lunardelli' where id = 6
+    update public.cidade set nome = 'Jandaia' where id = 12
+    update public.cidade set nome = 'Jandaia' where id = 5
+
+
+6- select 
+        cid.nome,
+        uf.sigla
+from
+        public.cidade cid,
+        public.uf uf
+where
+        uf.id = cid.id_uf
+order by
+        uf.id,
+        cid.nome;
+
+
+7 - select count(id_uf)from public.cidade
+where id_uf = 1  
+
+
+8 - ALTER TABLE public.endereco
+        ADD tipo varchar(20)
+        CONSTRAINT check_type
+        CHECK (tipo = 'residencial' OR tipo = 'comercial');
+
+
+9- insert into 
+        public.pessoa(nome, cpf)
+values
+        ('João da Silva','03868632102'),
+        ('Mariana Campos','02787276701'),
+        ('Mauricio de Melo','05777645207');
+        
+insert into
+                public.endereco(id_cidade, id_pessoa, logradouro, numero, cep, complemento, tipo)
+        values
+                (4, 2, 'Rua A', '110', '80010010', 'APTO 11', 'residencial'),
+                (4, 2, 'Rua Z', '404', '80010050', 'SALA 02', 'comercial'),
+                (5, 1, 'Av Paraná', '250', '87013070', 'APTO 22', 'residencial'),
+                (5, 1, 'Av Brasil', '1110', '87013000', 'SALA 05', 'comercial'),
+                (5, 3, 'Rua B', '770', '99190000', 'APTO 99', 'residencial'),
+                (5, 3, 'Rua C', '217', '99190000', 'LOJA 09', 'comercial');
+
+
+
+
+10- insert into 
+        public.pessoa(nome, cpf)
+values
+        ('Joana Prado','03958634503'),
+        ('Luan Machado','09287276708');
+
+
+insert into
+                public.endereco(id_cidade, id_pessoa, logradouro, numero, cep, complemento, tipo)
+        values
+                (13, 4, 'Rua S', '222', '80010050', 'APTO 1', 'residencial'),
+                (13, 4, 'Rua F', '300', '80010080', 'SALA 09', 'comercial'),
+                (15, 5, 'Av Barão do Rio Branco', '280', '87010070', 'APTO 2', 'residencial'),
+                (15, 5, 'Av Brasil', '110', '87013002', 'SALA 07', 'comercial');
+11- insert into 
+        public.pessoa(nome, cpf)
+values
+        ('Marina Boturi','04458625501'),
+        ('Paulo Tavares','08587276766');
+
+
+insert into
+                public.endereco(id_cidade, id_pessoa, logradouro, numero, cep, complemento, tipo)
+        values
+                (3, 6, 'Rua das Flores', '370', '80056080', 'SALA 666', 'comercial'),
+                (2, 7, 'Av Carmelia', '150', '87013702', 'SALA 072', 'comercial');
+
+
+12- SELECT
+        p.nome,
+        e.logradouro,
+        c.nome,
+        uf.sigla
+from 
+        public.pessoa p
+                join public.endereco e 
+                        on e.id_pessoa = p.id
+                join public.cidade c
+                        on e.id_cidade = c.id
+                join public.uf uf
+                        on c.id_uf = uf.id
+ORDER BY p.nome, uf.sigla, c.nome;
+
+
+
+
+14 - UPDATE public.endereco 
+                SET cep = '00000000'
+                WHERE endereco.tipo = 'residencial';
+                
+
+
+15- insert into  usuario(login, senha)
+        values 
+                ('usuario1','senha1');
+
+
+update pessoa set id_usuario = 1 where pessoa.id = 1;
+
+
+INSERT INTO
+        recibo(id_cliente, id_emitente, id_cidade, sequencia, "data", assinatura, valor)
+values
+        (2, 1, 5, 1, '2001-01-01', 'Assinado', 1111.11),
+        (2, 1, 5, 2, '2002-02-02', 'Assinado e autenticado', 222.22);
+
+
+16- insert into  usuario(login, senha)
+        values 
+                ('usuario2','senha2');
+
+
+        update pessoa set id_usuario = 2 where pessoa.id = 4;
+        
+INSERT INTO
+        recibo(id_cliente, id_emitente, id_cidade, sequencia, "data", assinatura, valor)
+values
+        (3, 1, 5, 3, '2008-01-01', 'Assinado', 100.00),
+        (2, 2, 4, 4, '2009-02-02', 'Assinado e autenticado', 555.00);
+
+
+18-  SELECT
+        COUNT(r.id) as recibos_emitidos,
+        SUM (r.valor) as valor_total
+FROM public.recibo r
+        JOIN CIDADE C
+                ON R.id_cidade = c.id
+                        WHERE c.id_uf = 1;
